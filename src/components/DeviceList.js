@@ -2,7 +2,7 @@ import React from 'react'
 
 function DeviceList() {
   return (
-    <div>DeviceList</div>
+    <div>Device List</div>
   )
 }
 
