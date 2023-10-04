@@ -1,0 +1,25 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button__column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 30px auto;
+}
+
+.button {
+  width: 320px;
+  margin: 22px;
+  color: bisque;
+  background-color: #ac485a;
+  border: 0;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 20px;
+  text-align: center;
+}
