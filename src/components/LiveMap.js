@@ -2,7 +2,7 @@ import React from 'react'
 import './LiveMap.css'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
-import { getDatabase, ref, push, onValue } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
+import { getDatabase, ref, push, onValue,snapshot } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
 
 
 
@@ -13,6 +13,15 @@ const appSettings = {
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const coordinatesInDb = ref(database,"coordinates" )
+
+
+onValue(coordinatesInDb, function(snapshot){
+    let coordinatesArray = Object.entries(snapshot.val())
+    let latitude = Object.values(snapshot.val().latitude)
+    let longitude = Object.values(snapshot.val().longitude)
+
+    console.log(latitude, longitude, coordinatesArray)
+})
 
 
 function LiveMap() {
