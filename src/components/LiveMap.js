@@ -6,24 +6,23 @@ function LiveMap() {
     return (
         <>
             <div className='map'>
-
                 <div className='map__header'>
-                    <h1>Map</h1>
+                    <h1>Find Device</h1>
                 </div>
 
                 <div className='map__container'>
+
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
                     <MapContainer
-                        className="markercluster-map"
-                        center={[-17, 31]}
+                        center={[51.505, -0.09]}
                         zoom={13}
-                        maxZoom={18}
+                        style={{ height: "90vh" }}
                     >
-                        <Marker
-                            position={[-17, 31]}
-                        />
                         <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
                     </MapContainer>
                 </div>
