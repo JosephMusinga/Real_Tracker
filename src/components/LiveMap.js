@@ -47,7 +47,7 @@ function LiveMap() {
 }
 
 function GetCoordinates(){
-    console.log(coordinatesInDb.value);
+    console.log(coordinatesInDb);
 }
 
 export default LiveMap
