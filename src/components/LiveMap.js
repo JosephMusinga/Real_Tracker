@@ -2,7 +2,7 @@ import React from 'react'
 import './LiveMap.css'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
-import { getDatabase, ref, push, onValue,snapshot } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
+import { getDatabase, ref, push, onValue, snapshot } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
 
 
 
@@ -12,15 +12,21 @@ const appSettings = {
 
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
-const coordinatesInDb = ref(database,"coordinates" )
+const coordinatesInDb = ref(database, "coordinates")
+
+let latitude = 51.505
+let longitude =  -0.09
+let position =[latitude, longitude]
 
 
-onValue(coordinatesInDb, function(snapshot){
-    let coordinatesArray = Object.entries(snapshot.val())
-    let latitude = Object.values(snapshot.val().latitude)
-    let longitude = Object.values(snapshot.val().longitude)
+onValue(coordinatesInDb, function (snapshot) {
+    let coordinatesArray = Object.values(snapshot.val())
 
-    console.log(latitude, longitude, coordinatesArray)
+    // latitude = parseFloat(coordinatesArray[0])
+    // longitude = parseFloat(coordinatesArray[1])
+    // position = [latitude, longitude]
+
+    console.log(position)
 })
 
 
@@ -36,6 +42,7 @@ function LiveMap() {
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
                         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossOrigin="" />
 
+
                     <MapContainer
                         center={[51.505, -0.09]}
                         zoom={13}
@@ -45,9 +52,10 @@ function LiveMap() {
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
+                        <Marker position={position}>
+                        </Marker>
                     </MapContainer>
-
-                    <GetCoordinates/>
+                    <GetCoordinates />
                 </div>
             </div>
 
@@ -55,7 +63,7 @@ function LiveMap() {
     )
 }
 
-function GetCoordinates(){
+function GetCoordinates() {
     console.log(coordinatesInDb);
 }
 
