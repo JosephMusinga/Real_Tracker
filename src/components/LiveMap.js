@@ -14,17 +14,17 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const coordinatesInDb = ref(database, "coordinates")
 
-let latitude = 51.505
-let longitude =  -0.09
-let position =[latitude, longitude]
+// let latitude = 51.505
+// let longitude =  -0.09
+let position
 
 
 onValue(coordinatesInDb, function (snapshot) {
     let coordinatesArray = Object.values(snapshot.val())
 
-    // latitude = parseFloat(coordinatesArray[0])
-    // longitude = parseFloat(coordinatesArray[1])
-    // position = [latitude, longitude]
+    latitude = parseFloat(coordinatesArray[0])
+    longitude = parseFloat(coordinatesArray[1])
+    window.position = [latitude, longitude]
 
     console.log(position)
 })
