@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './LiveMap.css'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, vectorTileLayerStyles } from 'react-leaflet'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
-import { getDatabase, ref, push, onValue, snapshot } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
+import { getDatabase, ref, onValue, snapshot } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
 
 
 
@@ -14,21 +14,32 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const coordinatesInDb = ref(database, "coordinates")
 
-// let latitude = 51.505
-// let longitude =  -0.09
-let position
+function GetCoordinates(){
+    const [coordinates, setCoordinates] = useState([1, 1]);
 
+    useEffect(() => {
+        onValue(coordinatesInDb, (snapshot) => {
+          const coordinatesArray = Object.values(snapshot.val());
+          setCoordinates(coordinatesArray);
+        });
+      }, [setCoordinates]);
 
-onValue(coordinatesInDb, function (snapshot) {
-    let coordinatesArray = Object.values(snapshot.val())
+      return coordinates
 
-    latitude = parseFloat(coordinatesArray[0])
-    longitude = parseFloat(coordinatesArray[1])
-    window.position = [latitude, longitude]
+}
 
-    console.log(position)
-})
+function ConvertCoordinates(){
+    let value = Object.values(GetCoordinates())
+    
+    let latitude = parseFloat(value[0])
+    let longitude = parseFloat(value[1])
+    var coordinates = [latitude, longitude]
 
+    console.log("latitude= "+ latitude +" longitude= "+longitude)
+    
+    return coordinates
+
+}
 
 function LiveMap() {
     return (
@@ -52,10 +63,9 @@ function LiveMap() {
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={position}>
+                        <Marker position={ConvertCoordinates()}>
                         </Marker>
                     </MapContainer>
-                    <GetCoordinates />
                 </div>
             </div>
 
@@ -63,8 +73,5 @@ function LiveMap() {
     )
 }
 
-function GetCoordinates() {
-    console.log(coordinatesInDb);
-}
 
 export default LiveMap
