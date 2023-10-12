@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './LiveMap.css'
-import { MapContainer, TileLayer, Marker, vectorTileLayerStyles } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
 import { getDatabase, ref, onValue, snapshot } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
 
@@ -35,7 +35,7 @@ function ConvertCoordinates(){
     let longitude = parseFloat(value[1])
     var coordinates = [latitude, longitude]
 
-    console.log("latitude= "+ latitude +" longitude= "+longitude)
+    console.log("latitude = "+ latitude +"\nlongitude = "+longitude)
     
     return coordinates
 
@@ -55,8 +55,8 @@ function LiveMap() {
 
 
                     <MapContainer
-                        center={[51.505, -0.09]}
-                        zoom={13}
+                        center={[-17.8487296, 31.0444032]} //Harare Coordinates
+                        zoom={11}
                         style={{ height: "90vh" }}
                     >
                         <TileLayer
