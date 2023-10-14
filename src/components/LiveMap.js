@@ -14,29 +14,29 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const coordinatesInDb = ref(database, "coordinates")
 
-function GetCoordinates(){
-    const [coordinates, setCoordinates] = useState([1, 1]);
+function GetCoordinates() {
+    const [coordinates, setCoordinates] = useState([-17.84, 31.04]);
 
     useEffect(() => {
         onValue(coordinatesInDb, (snapshot) => {
-          const coordinatesArray = Object.values(snapshot.val());
-          setCoordinates(coordinatesArray);
+            const coordinatesArray = Object.values(snapshot.val());
+            setCoordinates(coordinatesArray);
         });
-      }, [setCoordinates]);
+    }, [setCoordinates]);
 
-      return coordinates
+    return coordinates
 
 }
 
-function ConvertCoordinates(){
+function ConvertCoordinates() {
     let value = Object.values(GetCoordinates())
-    
+
     let latitude = parseFloat(value[0])
     let longitude = parseFloat(value[1])
     var coordinates = [latitude, longitude]
 
-    console.log("latitude = "+ latitude +"\nlongitude = "+longitude)
-    
+    console.log("latitude = " + latitude + "\nlongitude = " + longitude)
+
     return coordinates
 
 }
@@ -44,34 +44,27 @@ function ConvertCoordinates(){
 function LiveMap() {
     return (
         <>
-            <div className='map'>
-                <div className='map__header'>
-                    <h1>Find Device</h1>
-                </div>
-
-                <div className='map__container'>
-                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-                        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossOrigin="" />
+            <div className='map__container'>
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossOrigin="" />
 
 
-                    <MapContainer
-                        center={[-17.8487296, 31.0444032]} //Harare Coordinates
-                        zoom={11}
-                        style={{ height: "90vh" }}
+                <MapContainer
+                    center={[-17.8487296, 31.0444032]} //Harare Coordinates
+                    zoom={12}
+                    style={{ height: "90vh" }}
+                >
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={ConvertCoordinates()}
                     >
-                        <TileLayer
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        <Marker position={ConvertCoordinates()}>
-                        </Marker>
-                    </MapContainer>
-                </div>
+                    </Marker>
+                </MapContainer>
             </div>
-
         </>
     )
 }
-
 
 export default LiveMap
