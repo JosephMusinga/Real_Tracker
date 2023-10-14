@@ -12,27 +12,31 @@ const coordinatesInDB = ref(database, 'test')
 
 const sosButtonEl = document.getElementById('alertBtn')
 
+let lat
+let long
+
 sosButtonEl.addEventListener('click', function () {
 
-    update(coordinatesInDB, {
-        "latitude": 322333,
-        "longitude": 3133,
-    })
+    getCoordinates()
+
 })
 
+function getPosition(position) {
+    lat = position.coords.latitude
+    long = position.coords.longitude
 
+    console.log("Coordinates are Lat: " + lat + " ,Long: " + long)
 
+    //send coordinates to DB
+    update(coordinatesInDB, {
+        "latitude": lat,
+        "longitude": long,
+    })
 
-// function getPosition(position){
-//     var lat = position.coords.latitude
-//     var long = position.coords.longitude
-//     var accuracy = position.coords.accuracy
+}
 
-//     console.log("Coordinates are Lat: "+lat+" ,Long: "+long+", Accuracy: "+accuracy)
-//     }
+//get currrent position coordinates
+async function getCoordinates() {
 
-//      if (!navigator.geolocation){
-//         console.log("Your browser does not support the geolocation feature")
-//     }else{
-//     navigator.geolocation.getCurrentPosition(getPosition)
-//     }
+   navigator.geolocation.getCurrentPosition(getPosition)
+}
