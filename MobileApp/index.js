@@ -8,7 +8,7 @@ const appSettings = {
 
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
-const coordinatesInDB = ref(database, 'test')
+const coordinatesInDB = ref(database, 'coordinates')
 
 const sosButtonEl = document.getElementById('alertBtn')
 
@@ -18,7 +18,6 @@ let long
 sosButtonEl.addEventListener('click', function () {
 
     getCoordinates()
-
 })
 
 function getPosition(position) {
@@ -36,7 +35,7 @@ function getPosition(position) {
 }
 
 //get currrent position coordinates
-async function getCoordinates() {
+function getCoordinates() {
 
    navigator.geolocation.getCurrentPosition(getPosition)
 }

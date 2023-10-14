@@ -1,0 +1,43 @@
+.body__container {
+    font-family: 'Franklin Gothic Medium';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    user-select: none;
+}
+
+.header {
+    margin-top: 55px;
+    color: rgb(250, 72, 72);
+}
+
+.text {
+    width: 300px;
+    margin: 20px;
+    font-size: larger;
+    text-align: center;
+}
+
+.btn__container {
+    display: flex;
+    justify-content: center;
+    margin: 22px;
+    width: 155px;
+    height: 35px;
+}
+
+.alert__btn {
+    width: 155px;
+    height: 35px;
+    font-size: larger;
+    background-color: rgb(250, 72, 72);
+    color: white;
+    border-radius: 11px;
+}
+
+.alert__btn:hover {
+    background-color: white;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}

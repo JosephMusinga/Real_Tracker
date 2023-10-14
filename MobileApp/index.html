@@ -6,15 +6,28 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Realtime Location Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+    <div class="body__container">
+        <div class="header">
+            <h1>Emergency Alert !!!</h1>
+        </div>
 
-    <h1 style="color: red">Emergency Alert</h1>
-    <P>in case of an emergency press the button below to send an alert to park rangers, help will arrive immediately!</P>
-    <button id="alertBtn">SOS</button>
-    <script type="module" src="index.js"></script>
+        <div class="text">
+            <P>
+                In case of an emergency press the button below to send an alert to park rangers, help will arrive
+                immediately!
+            </P>
+        </div>
 
+        <div class="btn__container">
+            <button class="alert__btn" id="alertBtn">SOS</button>
+        </div>
+
+        <script type="module" src="index.js"></script>
+    </div>
 
 </body>
 
