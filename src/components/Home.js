@@ -12,11 +12,9 @@ function Home() {
       <div className='home__header'>Home</div>
       <div className='body'>
         <div className='button__column'>
-          <div className='button' onClick={() => navigate('/addDeviceForm')}>ADD NEW DEVICE
+          <div className='button' onClick={() => navigate('/deviceList')}>Devices
           </div>
 
-          <div className='button' onClick={() => navigate('/liveMap')}>TRACK
-          </div>
         </div>
 
       </div>

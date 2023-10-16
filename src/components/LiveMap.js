@@ -15,6 +15,12 @@ const database = getDatabase(app)
 const coordinatesInDb = ref(database, "coordinates")
 
 function GetCoordinates() {
+
+    const params = new URLSearchParams(window.location.search);
+    const databaseRef = params.get('databaseRef');
+
+    const coordinatesInDb = ref(database, databaseRef);
+
     const [coordinates, setCoordinates] = useState([-17.84, 31.04]);
 
     useEffect(() => {
@@ -50,8 +56,8 @@ function LiveMap() {
 
 
                 <MapContainer
-                    center={[-17.8487296, 31.0444032]} //Harare Coordinates
-                    zoom={12}
+                    center={ConvertCoordinates()} //Harare Coordinates
+                    zoom={11}
                     style={{ height: "90vh" }}
                 >
                     <TileLayer
