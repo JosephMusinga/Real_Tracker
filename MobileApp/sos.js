@@ -8,7 +8,13 @@ const appSettings = {
 
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
-const coordinatesInDB = ref(database, 'coordinates')
+
+//get reference value from input
+var searchParams = new URLSearchParams(window.location.search);
+var name = searchParams.get('inputValue').toString();
+
+console.log(typeof(name))
+const coordinatesInDB = ref(database, name)
 
 const sosButtonEl = document.getElementById('alertBtn')
 
@@ -25,13 +31,11 @@ function getPosition(position) {
     long = position.coords.longitude
 
     console.log("Coordinates are Lat: " + lat + " ,Long: " + long)
-
     //send coordinates to DB
     update(coordinatesInDB, {
         "latitude": lat,
         "longitude": long,
     })
-
 }
 
 //get currrent position coordinates

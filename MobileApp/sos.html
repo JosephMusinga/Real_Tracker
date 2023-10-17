@@ -6,7 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Realtime Location Tracker</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="sos.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -20,6 +20,12 @@
             <h1>Emergency Alert !!!</h1>
         </div>
 
+        <!-- <script>
+            function navigateToPage(page) {
+                window.location.href = page;
+            }
+        </script> -->
+
         <div class="text">
             <P>
                 In case of an emergency press the button below to send an alert to park rangers, help will arrive
@@ -28,10 +34,13 @@
         </div>
 
         <div class="btn__container">
-            <button class="alert__btn" id="alertBtn">SOS</button>
+            <a href="#" onclick="navigateToPage('Homepage.html')">
+                <button class="alert__btn" id="alertBtn">SOS</button>
+            </a>
+
         </div>
 
-        <script type="module" src="index.js"></script>
+        <script type="module" src="sos.js"></script>
     </div>
 
 </body>
