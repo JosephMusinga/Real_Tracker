@@ -13,7 +13,7 @@ const database = getDatabase(app)
 var searchParams = new URLSearchParams(window.location.search);
 var name = searchParams.get('inputValue').toString();
 
-console.log(typeof(name))
+console.log(typeof (name))
 const coordinatesInDB = ref(database, name)
 
 const sosButtonEl = document.getElementById('alertBtn')
@@ -22,8 +22,7 @@ let lat
 let long
 
 sosButtonEl.addEventListener('click', function () {
-
-    getCoordinates()
+    console.log('click')
 })
 
 function getPosition(position) {
@@ -40,6 +39,12 @@ function getPosition(position) {
 
 //get currrent position coordinates
 function getCoordinates() {
-
-   navigator.geolocation.getCurrentPosition(getPosition)
+    navigator.geolocation.getCurrentPosition(getPosition)
 }
+
+function callEvery2Minutes(myFunction) {
+    setInterval(myFunction, 11 * 1000);
+}
+
+callEvery2Minutes(getCoordinates)
+
