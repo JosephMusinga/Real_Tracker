@@ -12,15 +12,9 @@ const database = getDatabase(app)
 //get reference value from input
 var searchParams = new URLSearchParams(window.location.search);
 var name = searchParams.get('inputValue').toString();
-<<<<<<< HEAD
 console.log(typeof (name))
 
 const coordinatesInDB = ref(database, `user/${name}`)
-=======
-
-console.log(typeof(name))
-const coordinatesInDB = ref(database, name)
->>>>>>> parent of 40f38cd (set  interval for coordinates update)
 
 const sosButtonEl = document.getElementById('alertBtn')
 
@@ -29,14 +23,14 @@ let long
 
 sosButtonEl.addEventListener('click', function () {
 
-    getCoordinates()
+   
 })
 
 function getPosition(position) {
     lat = position.coords.latitude
     long = position.coords.longitude
 
-    console.log("Coordinates are Lat: " + lat + " \nLong: " + long)
+    console.log("Coordinates are Lat: " + lat + " ,Long: " + long)
     //send coordinates to DB
     update(coordinatesInDB, {
         "latitude": lat,
@@ -47,5 +41,11 @@ function getPosition(position) {
 //get currrent position coordinates
 function getCoordinates() {
 
-   navigator.geolocation.getCurrentPosition(getPosition)
+    navigator.geolocation.getCurrentPosition(getPosition)
 }
+
+function callEvery2Minutes(myFunction) {
+    setInterval(myFunction, 5 * 1000);
+}
+
+callEvery2Minutes(getCoordinates);
