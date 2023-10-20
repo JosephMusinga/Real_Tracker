@@ -14,9 +14,9 @@ function DeviceList() {
 
   return (
     <>
-      <div>Device List</div> 
+      <div>Device List</div>
 
-      <div className='button' onClick={() => handleButtonClick('coordinates')}>Device1</div>
+      <div className='button' onClick={() => handleButtonClick('coordinates1')}>Device1</div>
 
       <div className='button' onClick={() => handleButtonClick('test')}>Device2</div>
    

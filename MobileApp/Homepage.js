@@ -10,4 +10,5 @@ function navigateToPage(page) {
     var parameter = '?inputValue=' + inputValue;
 
     window.location.href = page + parameter;
+    console.log(inputValue)
 }
