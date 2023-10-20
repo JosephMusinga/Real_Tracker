@@ -16,9 +16,9 @@ function DeviceList() {
     <>
       <div>Device List</div>
 
-      <div className='button' onClick={() => handleButtonClick('coordinates1')}>Device1</div>
+      <div className='button' onClick={() => handleButtonClick('user22')}>Device1</div>
 
-      <div className='button' onClick={() => handleButtonClick('test')}>Device2</div>
+      <div className='button' onClick={() => handleButtonClick('ehe')}>Device2</div>
    
     </>
   )
