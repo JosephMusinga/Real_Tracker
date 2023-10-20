@@ -14,7 +14,7 @@ var searchParams = new URLSearchParams(window.location.search);
 var name = searchParams.get('inputValue').toString();
 console.log(typeof (name))
 
-const coordinatesInDB = ref(database, `user/${name}`)
+const coordinatesInDB = ref(database, name)
 
 const sosButtonEl = document.getElementById('alertBtn')
 
@@ -22,10 +22,10 @@ let lat
 let long
 
 sosButtonEl.addEventListener('click', function () {
-
-   
+   //TODO implement notifications functionn
 })
 
+//get currrent position coordinates
 function getPosition(position) {
     lat = position.coords.latitude
     long = position.coords.longitude
@@ -38,14 +38,12 @@ function getPosition(position) {
     })
 }
 
-//get currrent position coordinates
 function getCoordinates() {
-
     navigator.geolocation.getCurrentPosition(getPosition)
 }
 
-function callEvery2Minutes(myFunction) {
-    setInterval(myFunction, 5 * 1000);
+function coordinatesUpdateInterval(myFunction) {
+    setInterval(myFunction, 15 * 1000);
 }
 
-callEvery2Minutes(getCoordinates);
+coordinatesUpdateInterval(getCoordinates);
