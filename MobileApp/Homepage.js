@@ -4,7 +4,7 @@ function navigateToPage(page) {
     // Check if the input field is empty
     if (inputValue.length === 0) {
         // Prevent the button from navigating to the next screen
-        alert('Please enter the correct reference code to proceed');
+        alert('Please enter the correct access code to proceed');
         return false;
     }
     var parameter = '?inputValue=' + inputValue;
