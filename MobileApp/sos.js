@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
-import { getDatabase, ref, push, update } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
+import { getDatabase, ref, push, update, onValue } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js'
 
 
 const appSettings = {
@@ -21,6 +21,9 @@ const sosButtonEl = document.getElementById('alertBtn')
 let lat
 let long
 
+let referenceNotFoundError = false;
+let successfulAlert = false;
+
 sosButtonEl.addEventListener('click', function () {
    //TODO implement notifications functionn
 })
@@ -31,11 +34,26 @@ function getPosition(position) {
     long = position.coords.longitude
 
     console.log("Coordinates are Lat: " + lat + " ,Long: " + long)
-    //send coordinates to DB
-    update(coordinatesInDB, {
+    
+  onValue(coordinatesInDB, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      //send coordinates to DB
+      update(coordinatesInDB, {
         "latitude": lat,
         "longitude": long,
-    })
+      })
+      if(!successfulAlert){
+        alert("You are now being tracked, keep your location turned on");
+        successfulAlert = true;
+      }
+    } else {
+      if (!referenceNotFoundError) {
+        alert("Reference not found in the database. Please provide the correct access code!");
+        referenceNotFoundError = true;
+      }
+    }
+  });
 }
 
 function getCoordinates() {

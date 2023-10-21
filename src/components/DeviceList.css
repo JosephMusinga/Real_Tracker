@@ -1,0 +1,16 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .app__header{
+    color: blue;
+  }
+
+  .app__body{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }

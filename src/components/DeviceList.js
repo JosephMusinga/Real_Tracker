@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -14,12 +14,25 @@ function DeviceList() {
 
   return (
     <>
-      <div>Device List</div>
+      <div className='app__body'>
+        <div>Device List</div>
 
-      <div className='button' onClick={() => handleButtonClick('user22')}>Device1</div>
+        <div className='button' onClick={() => handleButtonClick('001')}>Device 001</div>
 
-      <div className='button' onClick={() => handleButtonClick('ehe')}>Device2</div>
-   
+        <div className='button' onClick={() => handleButtonClick('002')}>Device 002</div>
+
+        <div className='button' onClick={() => handleButtonClick('003')}>Device 003</div>
+
+        <div className='button' onClick={() => handleButtonClick('004')}>Device 004</div>
+
+        <div className='button' onClick={() => handleButtonClick('005')}>Device 005</div>
+
+        <div className='button' onClick={() => handleButtonClick('006')}>Device 006</div>
+
+        <div className='button' onClick={() => handleButtonClick('007')}>Device 007</div>
+
+        <div className='button' onClick={() => handleButtonClick('008')}>Device 008</div>
+      </div>
     </>
   )
 }
