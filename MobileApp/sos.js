@@ -15,6 +15,8 @@ var name = searchParams.get('inputValue').toString();
 console.log(typeof (name))
 
 const coordinatesInDB = ref(database, name)
+const alertsInDB = ref(database, 'alerts')
+
 
 const sosButtonEl = document.getElementById('alertBtn')
 
@@ -25,7 +27,11 @@ let referenceNotFoundError = false;
 let successfulAlert = false;
 
 sosButtonEl.addEventListener('click', function () {
-   //TODO implement notifications functionn
+  onValue(alertsInDB, (snapshot) =>{
+    update(alertsInDB, {
+      [getDate()] : `${name} has sent an alert`
+    })
+  })
 })
 
 //get currrent position coordinates
@@ -61,7 +67,21 @@ function getCoordinates() {
 }
 
 function coordinatesUpdateInterval(myFunction) {
-    setInterval(myFunction, 15 * 1000);
+    setInterval(myFunction, 8 * 1000);
 }
 
 coordinatesUpdateInterval(getCoordinates);
+
+function getDate(){
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = today.getMonth()
+  const day = today.getDate()
+  const hour = today.getHours()
+  const minute = today.getMinutes()
+  const seconds = today.getSeconds()
+
+  const fullDateAndTime = `${day}-${month}-${year} time :${hour}:${minute}:${seconds}`
+
+  return fullDateAndTime
+}
