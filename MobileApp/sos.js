@@ -29,7 +29,7 @@ let successfulAlert = false;
 sosButtonEl.addEventListener('click', function () {
   onValue(alertsInDB, (snapshot) =>{
     update(alertsInDB, {
-      [getDate()] : `${name} has sent an alert`
+      alert : `${name} needs attention `+ [getDate()]
     })
   })
 })

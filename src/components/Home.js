@@ -1,11 +1,12 @@
 import React from 'react'
 import './Home.css'
 import { useNavigate } from 'react-router-dom'
+import { getAlertFromDatabase } from './FirebaseSetup'
 
 
 function Home() {
   const navigate = useNavigate()
-
+  getAlertFromDatabase()
 
   return (
     <>

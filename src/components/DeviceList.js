@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getAlertFromDatabase } from './FirebaseSetup'
 
 
 function DeviceList() {
   const navigate = useNavigate()
-
+  
+  getAlertFromDatabase()
 
   const handleButtonClick = (ref) => {
     // Navigate to the second page with the user name as a prop.
     navigate(`/liveMap?databaseRef=${ref}`);
   };
-
 
   return (
     <>
